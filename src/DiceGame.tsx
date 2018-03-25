@@ -1,4 +1,6 @@
 import * as React from "react"
+import {Grid,Row,Col} from "react-bootstrap"
+//import {DieFace} from "./DieFace"
 
 
 interface diceGroup {
@@ -245,7 +247,10 @@ export default class DiceGame extends React.Component {
 
     }
     render() {
-        return <div>
+        return <div style={{"marginLeft":"auto","marginRight":"auto","maxWidth":"700px", "position":"relative","height":"100vh"}}>
+      
+        <div style={{"position":"absolute","top":"50%","transform":"translate(0, -50%)"}}>
+        <Grid>
             {this.state.hands.map((hand, handIndex) => {
                 return <div key={handIndex}>{handIndex==0?"Human ":"Comp :   "}{hand.map((group, dieIndex) => {
                     return <DiceGroup key={dieIndex} onClick={(evt) => { this.onDieClick(handIndex, dieIndex) }} value={group.value} selected={group.selected} amount={group.amount} />
@@ -280,12 +285,18 @@ export default class DiceGame extends React.Component {
             <button onClick={this.resetGame}>Restart Game</button>
             <br/>
             <GameRules/>
-        </div>
+            </Grid>
+            </div>
+            </div>
+            
+           
+      
+        
     }
 
 
 }
-function DiceGroup(props: any) {
+export function DiceGroup(props: any) {
     let style;
     if (props.selected) {
         style = {
@@ -296,18 +307,18 @@ function DiceGroup(props: any) {
         backgroundColor: "white",
         color: "black"
     }
-    let content = "";
+    let content =[];
     for (let i = 0; i < props.amount; i++) {
-        if (i > 0) {
-            content += "*";
-        }
-        content += props.value;
+       
+            //content.push(<DieFace style={{"display":"inline"}}player={props.player} face={props.value}/>);
+        
+       
     }
-    return <span onClick={props.onClick} style={style}>{content + " "}</span>
+    return <span onClick={props.onClick} style={style}></span>
 }
 interface actionProps {
     text: string,
-    onClick: Function,
+    onClick: (MouseEvent)=>void,
     enabled: boolean
 }
 function ActionButton(props: actionProps) {
