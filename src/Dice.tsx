@@ -18,14 +18,24 @@ const Face=styled.div.attrs<any>({})`
     border-radius: 5px;
     padding: 5px;
     display: inline-block;
+    margin-left: 1px;
+    margin-right: 1px;
 `
 
 const FaceSelected=Face.extend`
     border: 3px solid #11DD11;
 `
 
+const StyledDiceGroup=styled.div.attrs<any>({})`
+    display: inline-block;
+    border:${props=>props.selected?"2px solid green":"1px solid red "};
+    padding-left: 5px;
+    padding-right: 5px;
+    border-style: none none solid none;
+    
+`
 
-export function StyledDiceGroup(props: any) {
+export function DiceGroup(props: any) {
     let style;
     if (props.selected) {
         style = {
@@ -43,7 +53,7 @@ export function StyledDiceGroup(props: any) {
         
        
     }
-    return <div onClick={props.onClick}>{content}</div>
+    return <StyledDiceGroup selected={props.selected}onClick={props.onClick}>{content}</StyledDiceGroup>
 }
 
 

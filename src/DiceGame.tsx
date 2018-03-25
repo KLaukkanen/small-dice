@@ -1,6 +1,6 @@
 import * as React from "react"
 import {Grid,Row,Col} from "react-bootstrap"
-//import {DieFace} from "./DieFace"
+import {DiceGroup} from "./Dice"
 
 
 interface diceGroup {
@@ -253,7 +253,7 @@ export default class DiceGame extends React.Component {
         <Grid>
             {this.state.hands.map((hand, handIndex) => {
                 return <div key={handIndex}>{handIndex==0?"Human ":"Comp :   "}{hand.map((group, dieIndex) => {
-                    return <DiceGroup key={dieIndex} onClick={(evt) => { this.onDieClick(handIndex, dieIndex) }} value={group.value} selected={group.selected} amount={group.amount} />
+                    return <DiceGroup player={handIndex} key={dieIndex} onClick={(evt) => { this.onDieClick(handIndex, dieIndex) }} value={group.value} selected={group.selected} amount={group.amount} />
                 })}{this.state.player==handIndex&&" T"}</div>
 
             })}
@@ -296,26 +296,7 @@ export default class DiceGame extends React.Component {
 
 
 }
-export function DiceGroup(props: any) {
-    let style;
-    if (props.selected) {
-        style = {
-            backgroundColor: "black",
-            color: "white"
-        }
-    } else style = {
-        backgroundColor: "white",
-        color: "black"
-    }
-    let content =[];
-    for (let i = 0; i < props.amount; i++) {
-       
-            //content.push(<DieFace style={{"display":"inline"}}player={props.player} face={props.value}/>);
-        
-       
-    }
-    return <span onClick={props.onClick} style={style}></span>
-}
+
 interface actionProps {
     text: string,
     onClick: (MouseEvent)=>void,

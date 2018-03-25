@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import {DieFace,DieFaceSelected,StyledDiceGroup} from '../src/Dice';
+import {DieFace,DieFaceSelected,DiceGroup} from '../src/Dice';
 
 //import { Button, Welcome } from '@storybook/react/demo';
 storiesOf('DieFace',module)
@@ -20,5 +20,5 @@ storiesOf('DieFaceSelected',module)
 .add("6",()=>{return <DieFaceSelected player={2} face={6}/>})
 
 storiesOf('DiceGroup',module)
-.add("Player 1 - 6 Selected",()=>{return <StyledDiceGroup selected={true} player={1} value={6} amount={3}/>})
-.add("Player 2 - 6",()=>{return <StyledDiceGroup selected={false} player={2} value={6} amount={3}/>})
+.add("Player 1 - 6 Selected",()=>{return <DiceGroup selected={true} player={1} value={6} amount={3}/>})
+.add("Player 2 - 6",()=>{return <DiceGroup selected={false} player={2} value={6} amount={3}/>})
